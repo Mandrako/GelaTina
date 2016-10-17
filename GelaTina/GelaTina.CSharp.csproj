@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\Behaviours\Walk.cs" />
     <Compile Include="Assets\Scripts\Behaviours\WallJump.cs" />
     <Compile Include="Assets\Scripts\Behaviours\WallSlide.cs" />
+    <Compile Include="Assets\Scripts\Camera\TrackTarget.cs" />
     <Compile Include="Assets\Scripts\Collision\Collectable.cs" />
     <Compile Include="Assets\Scripts\Collision\CollisionState.cs" />
     <Compile Include="Assets\Scripts\Effects\DustEffect.cs" />

@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(LineRenderer))]
 public class Laser : MonoBehaviour {
     public int maxDistance = 100;
     public string reflectionTag = "Reflective";
@@ -12,14 +11,12 @@ public class Laser : MonoBehaviour {
     public GameObject laserBeamPrefab;
 
     private Vector3 _direction;
-    private LineRenderer _lineRenderer;
     private List<Vector3> _points;
     private List<LaserBeam> _beams;
 
     void Start () {
         _points = new List<Vector3>();
         _beams = new List<LaserBeam>();
-        _lineRenderer = GetComponent<LineRenderer>();
     }
 
     void Update () {

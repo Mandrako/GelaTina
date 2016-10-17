@@ -33,7 +33,6 @@ public class PlayerManager : MonoBehaviour {
 
         if(!_collisionState.grounded && _inputState.absValY > 0)
         {
-            Debug.Log("PING!");
             ChangeAnimationState(2);
         }
 
