@@ -32,10 +32,23 @@ public class Laser : MonoBehaviour {
 
     void DrawLaser()
     {
+        if (_points.Count < _beams.Count)
+        {
+            for (int i = _points.Count; i < _beams.Count; i++)
+            {
+                _beams[i].gameObject.SetActive(false);
+            }    
+        }
+
         for (int i = 0; i < _points.Count - 1; i++)
         {
             if(i < _beams.Count)
             {
+                if (_beams[i].gameObject.activeSelf == false)
+                {
+                    _beams[i].gameObject.SetActive(true);
+                }
+
                 _beams[i].startPoint = _points[i];
                 _beams[i].endPoint = _points[i + 1];
             }
@@ -70,7 +83,7 @@ public class Laser : MonoBehaviour {
         {
             hit = Physics2D.Raycast(pos, dir, maxDistance, hitLayers);
 
-            if(hit.collider != null)
+            if(hit.collider != null && hit.transform.tag == reflectionTag)
             {
                 point = hit.point;
                 point.z = -0.01f;
@@ -81,8 +94,7 @@ public class Laser : MonoBehaviour {
 
                 count++;
             }
-
-        } while (count < maxPoints && hit.collider != null);
+        } while (count < maxPoints && hit.collider != null && hit.transform.tag == reflectionTag);
     }
 
     void OnDrawGizmos()
