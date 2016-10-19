@@ -17,6 +17,7 @@ public class Laser : MonoBehaviour {
     void Start () {
         _points = new List<Vector3>();
         _beams = new List<LaserBeam>();
+        _direction = -transform.up;
     }
 
     void Update () {
@@ -25,8 +26,6 @@ public class Laser : MonoBehaviour {
 
     void FixedUpdate()
     {
-        _direction = -transform.up;
-
         FindReflectionPoints(transform.position, _direction);
     }
 
@@ -34,7 +33,7 @@ public class Laser : MonoBehaviour {
     {
         if (_points.Count < _beams.Count)
         {
-            for (int i = _points.Count; i < _beams.Count; i++)
+            for (int i = _points.Count - 1; i < _beams.Count; i++)
             {
                 _beams[i].gameObject.SetActive(false);
             }    
@@ -83,7 +82,7 @@ public class Laser : MonoBehaviour {
         {
             hit = Physics2D.Raycast(pos, dir, maxDistance, hitLayers);
 
-            if(hit.collider != null && hit.transform.tag == reflectionTag)
+            if(hit.collider != null)
             {
                 point = hit.point;
                 point.z = -0.01f;
