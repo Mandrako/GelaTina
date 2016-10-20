@@ -5,17 +5,17 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3C0A0342-0A1B-7FC4-BA4D-824BE5B6232F}</ProjectGuid>
+    <ProjectGuid>{66B9167D-485C-9717-156A-4B0839A9F138}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
     <CompilerResponseFile>
     </CompilerResponseFile>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.1f1</UnityVersion>
     <RootNamespace>
@@ -54,43 +54,54 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Advertisements.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>Library\UnityAssemblies\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.EditorTestsRunner">
+      <HintPath>Library\UnityAssemblies\UnityEditor.EditorTestsRunner.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>Library\UnityAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    <Reference Include="UnityEditor.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TreeEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.TreeEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WebGL.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WebGL.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+      <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Behaviours\AbstractBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Death.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Duck.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Equip.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\FaceDirection.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\FireProjectile.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Jump.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\LongJump.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\PlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\StickToWall.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Walk.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\WallJump.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\WallSlide.cs" />
-    <Compile Include="Assets\Scripts\Camera\TrackTarget.cs" />
-    <Compile Include="Assets\Scripts\Collision\Collectable.cs" />
-    <Compile Include="Assets\Scripts\Collision\CollisionState.cs" />
-    <Compile Include="Assets\Scripts\Effects\DustEffect.cs" />
-    <Compile Include="Assets\Scripts\Input\InputManager.cs" />
-    <Compile Include="Assets\Scripts\Input\InputState.cs" />
-    <Compile Include="Assets\Scripts\Items\PowerUpCan.cs" />
-    <Compile Include="Assets\Scripts\Items\PurplePotion.cs" />
-    <Compile Include="Assets\Scripts\Items\SlimeBall.cs" />
-    <Compile Include="Assets\Scripts\Laser.cs" />
-    <Compile Include="Assets\Scripts\LaserBeam.cs" />
-    <Compile Include="Assets\Scripts\LevelGenerator.cs" />
-    <Compile Include="Assets\Scripts\Managers\PlayerManager.cs" />
+    <ProjectReference Include="GelaTina.CSharp.csproj">
+      <Project>{3C0A0342-0A1B-7FC4-BA4D-824BE5B6232F}</Project>
+      <Name>GelaTina.CSharp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Editor\LevelGeneratorInspector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

@@ -71,11 +71,14 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 1
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: GelaTina_spritesheet_0
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_0
       rect:
         serializedVersion: 2
         x: 1
@@ -86,7 +89,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_1
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_1
       rect:
         serializedVersion: 2
         x: 18
@@ -97,7 +102,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_2
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_2
       rect:
         serializedVersion: 2
         x: 35
@@ -108,7 +115,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_3
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_3
       rect:
         serializedVersion: 2
         x: 52
@@ -119,7 +128,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_4
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_4
       rect:
         serializedVersion: 2
         x: 69
@@ -130,7 +141,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_5
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_5
       rect:
         serializedVersion: 2
         x: 86
@@ -141,7 +154,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_6
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_6
       rect:
         serializedVersion: 2
         x: 1
@@ -152,7 +167,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_7
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_7
       rect:
         serializedVersion: 2
         x: 18
@@ -163,7 +180,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_8
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_8
       rect:
         serializedVersion: 2
         x: 35
@@ -174,7 +193,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_9
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_9
       rect:
         serializedVersion: 2
         x: 52
@@ -185,7 +206,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_10
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_10
       rect:
         serializedVersion: 2
         x: 69
@@ -196,7 +219,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_11
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_11
       rect:
         serializedVersion: 2
         x: 86
@@ -207,7 +232,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_12
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_12
       rect:
         serializedVersion: 2
         x: 103
@@ -218,7 +245,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_13
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_13
       rect:
         serializedVersion: 2
         x: 1
@@ -229,7 +258,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_14
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_14
       rect:
         serializedVersion: 2
         x: 18
@@ -240,7 +271,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_15
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_15
       rect:
         serializedVersion: 2
         x: 1
@@ -251,7 +284,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_16
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_16
       rect:
         serializedVersion: 2
         x: 18
@@ -262,7 +297,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_17
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_17
       rect:
         serializedVersion: 2
         x: 35
@@ -273,7 +310,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_18
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_18
       rect:
         serializedVersion: 2
         x: 52
@@ -284,7 +323,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_19
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_19
       rect:
         serializedVersion: 2
         x: 69
@@ -295,7 +336,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_20
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_20
       rect:
         serializedVersion: 2
         x: 86
@@ -306,7 +349,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_21
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_21
       rect:
         serializedVersion: 2
         x: 103
@@ -317,7 +362,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_22
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_22
       rect:
         serializedVersion: 2
         x: 1
@@ -328,7 +375,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_23
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_23
       rect:
         serializedVersion: 2
         x: 1
@@ -339,7 +388,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: GelaTina_spritesheet_24
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: GelaTina_spritesheet_24
       rect:
         serializedVersion: 2
         x: 18
@@ -350,6 +401,7 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     outline: []
   spritePackingTag: 
   userData: 

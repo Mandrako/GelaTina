@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GelaTina.CSharp", "GelaTina.CSharp.csproj", "{3C0A0342-0A1B-7FC4-BA4D-824BE5B6232F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GelaTina.CSharp.Editor", "GelaTina.CSharp.Editor.csproj", "{66B9167D-485C-9717-156A-4B0839A9F138}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{3C0A0342-0A1B-7FC4-BA4D-824BE5B6232F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C0A0342-0A1B-7FC4-BA4D-824BE5B6232F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C0A0342-0A1B-7FC4-BA4D-824BE5B6232F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66B9167D-485C-9717-156A-4B0839A9F138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66B9167D-485C-9717-156A-4B0839A9F138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66B9167D-485C-9717-156A-4B0839A9F138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66B9167D-485C-9717-156A-4B0839A9F138}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
