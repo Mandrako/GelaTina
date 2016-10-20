@@ -31,7 +31,7 @@ public class Laser : MonoBehaviour {
 
     void DrawLaser()
     {
-        if (_points.Count < _beams.Count)
+        if (_points.Count - 1 < _beams.Count)
         {
             for (int i = _points.Count - 1; i < _beams.Count; i++)
             {
