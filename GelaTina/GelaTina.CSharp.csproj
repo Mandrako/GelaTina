@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\LaserBeam.cs" />
     <Compile Include="Assets\Scripts\LevelGenerator.cs" />
     <Compile Include="Assets\Scripts\Managers\PlayerManager.cs" />
+    <Compile Include="Assets\Scripts\PulseLaser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

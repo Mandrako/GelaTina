@@ -10,26 +10,37 @@ public class Laser : MonoBehaviour {
     public Color debugLaserColor = Color.yellow;
     public GameObject laserBeamPrefab;
 
-    private Vector3 _direction;
-    private List<Vector3> _points;
-    private List<LaserBeam> _beams;
+    protected bool _isActive = true;
+    protected Vector3 _direction;
+    protected List<Vector3> _points;
+    protected List<LaserBeam> _beams;
 
-    void Start () {
+    protected virtual void Start () {
         _points = new List<Vector3>();
         _beams = new List<LaserBeam>();
-        _direction = -transform.up;
     }
 
-    void Update () {
-        DrawLaser();
+    protected virtual void Update () {
+        if (_isActive)
+        {
+            _direction = -transform.up;
+            DrawLaser();
+        }
+        else
+        {
+            DeactivateBeams();
+        }
     }
 
-    void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
-        FindReflectionPoints(transform.position, _direction);
+        if (_isActive)
+        {
+            FindReflectionPoints(transform.position, _direction);
+        }
     }
 
-    void DrawLaser()
+    protected virtual void DrawLaser()
     {
         if (_points.Count - 1 < _beams.Count)
         {
@@ -64,7 +75,18 @@ public class Laser : MonoBehaviour {
         }
     }
 
-    void FindReflectionPoints(Vector3 startPos, Vector3 startDir)
+    protected virtual void DeactivateBeams()
+    {
+        foreach (LaserBeam beam in _beams)
+        {
+            if (beam.isActiveAndEnabled)
+            {
+                beam.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    protected virtual void FindReflectionPoints(Vector3 startPos, Vector3 startDir)
     {
         Vector3 pos = startPos;
         Vector3 dir = startDir;
@@ -96,7 +118,7 @@ public class Laser : MonoBehaviour {
         } while (count < maxPoints && hit.collider != null && hit.transform.tag == reflectionTag);
     }
 
-    void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
         if(_points != null)
         {

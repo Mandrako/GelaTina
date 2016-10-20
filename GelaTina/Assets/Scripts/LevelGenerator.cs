@@ -34,7 +34,6 @@ public class LevelGenerator : MonoBehaviour
                 SpawnPrefabAt(allPixels[(y * width) + x], x * TileSize, y * TileSize);
             }
         }
-
     }
 
     void SpawnPrefabAt(Color32 color, int x, int y)
@@ -48,7 +47,7 @@ public class LevelGenerator : MonoBehaviour
         {
             if (ctp.color.Equals(color))
             {
-                GameObject go = (GameObject) Instantiate(ctp.prefab, new Vector3(x, y, 0), Quaternion.identity);
+                GameObject go = (GameObject) Instantiate(ctp.prefab, new Vector3(x, y, 0), ctp.prefab.transform.rotation);
                 go.transform.parent = this.transform;
                 return;
             }
