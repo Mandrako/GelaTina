@@ -21,8 +21,6 @@ public class LevelGenerator : MonoBehaviour
 
     public void LoadMap()
     {
-        EmptyMap();
-
         Color32[] allPixels = LevelMap.GetPixels32();
         int width = LevelMap.width;
         int height = LevelMap.height;
@@ -47,7 +45,7 @@ public class LevelGenerator : MonoBehaviour
         {
             if (ctp.color.Equals(color))
             {
-                GameObject go = (GameObject) Instantiate(ctp.prefab, new Vector3(x, y, 0), ctp.prefab.transform.rotation);
+                GameObject go = (GameObject) Instantiate(ctp.prefab, new Vector3(x, y, ctp.prefab.transform.position.z), ctp.prefab.transform.rotation);
                 go.transform.parent = this.transform;
                 return;
             }
