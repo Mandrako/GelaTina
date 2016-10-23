@@ -9,11 +9,13 @@ public class Laser : MonoBehaviour {
     public LayerMask hitLayers;
     public Color debugLaserColor = Color.yellow;
     public GameObject laserBeamPrefab;
+    public GameObject laserImpactPrefab;
 
     protected bool _isActive = true;
     protected Vector3 _direction;
     protected List<Vector3> _points;
     protected List<LaserBeam> _beams;
+    protected GameObject _laserImpactObject;
 
     protected virtual void Start () {
         _points = new List<Vector3>();
@@ -73,6 +75,25 @@ public class Laser : MonoBehaviour {
                 _beams.Add(laserBeam);
             }
         }
+
+        if(_points.Count > 1)
+        {
+            DrawLaserImpact(_points[_points.Count - 1]);
+        }
+    }
+
+    protected virtual void DrawLaserImpact(Vector3 position)
+    {
+        if(_laserImpactObject == null)
+        {
+            _laserImpactObject = (GameObject)Instantiate(laserImpactPrefab, position, laserImpactPrefab.transform.rotation);
+            _laserImpactObject.transform.SetParent(this.transform);
+        }
+        else
+        {
+            _laserImpactObject.SetActive(true);
+            _laserImpactObject.transform.position = position;
+        }
     }
 
     protected virtual void DeactivateBeams()
@@ -83,6 +104,11 @@ public class Laser : MonoBehaviour {
             {
                 beam.gameObject.SetActive(false);
             }
+        }
+
+        if(_laserImpactObject != null)
+        {
+            _laserImpactObject.SetActive(false);
         }
     }
 
