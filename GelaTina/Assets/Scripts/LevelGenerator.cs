@@ -6,16 +6,22 @@ using System.Collections;
 public class LevelGenerator : MonoBehaviour
 {
     public int TileSize = 16;
+    public int LayerIndex = 0;
     public Texture2D LevelMap;
     public ColorToPrefab[] ColorsToPrefabs;
 
+    private GameObject _layer;
+
     public void EmptyMap()
     {
-        while (transform.childCount > 0)
+        if (_layer != null)
         {
-            Transform c = transform.GetChild(0);
-            c.SetParent(null);
-            DestroyImmediate(c.gameObject);
+            while (_layer.transform.childCount > 0)
+            {
+                Transform c = _layer.transform.GetChild(0);
+                c.SetParent(null);
+                DestroyImmediate(c.gameObject);
+            }
         }
     }
 
@@ -24,6 +30,16 @@ public class LevelGenerator : MonoBehaviour
         Color32[] allPixels = LevelMap.GetPixels32();
         int width = LevelMap.width;
         int height = LevelMap.height;
+
+        _layer = GameObject.Find("Layer_" + LayerIndex);
+
+        if (_layer == null)
+        {
+            GameObject layer = new GameObject();
+            layer.name = "Layer_" + LayerIndex;
+            layer.transform.parent = this.transform;
+            _layer = layer;
+        }
 
         for (int x = 0; x < width; x++)
         {
@@ -45,8 +61,8 @@ public class LevelGenerator : MonoBehaviour
         {
             if (ctp.color.Equals(color))
             {
-                GameObject go = (GameObject) Instantiate(ctp.prefab, new Vector3(x, y, ctp.prefab.transform.position.z), ctp.prefab.transform.rotation);
-                go.transform.parent = this.transform;
+                GameObject go = (GameObject) Instantiate(ctp.prefab, new Vector3(x, y, LayerIndex), ctp.prefab.transform.rotation);
+                go.transform.parent = _layer.transform;
                 return;
             }
         }
