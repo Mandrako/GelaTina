@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class PlayerManager : MonoBehaviour {
+public class PlayerManager : MonoBehaviour
+{
 
     private InputState _inputState;
     private Walk _walkBehaviour;
@@ -19,9 +21,10 @@ public class PlayerManager : MonoBehaviour {
         _duckBehaviour = GetComponent<Duck>();
         _longJumpBehaviour = GetComponent<LongJump>();
     }
-	
-	void Update () {
-	    if(_collisionState.grounded)
+
+    void Update()
+    {
+        if (_collisionState.grounded)
         {
             ChangeAnimationState(0);
         }
@@ -31,7 +34,7 @@ public class PlayerManager : MonoBehaviour {
             ChangeAnimationState(1);
         }
 
-        if(!_collisionState.grounded && _inputState.absValY > 0)
+        if (!_collisionState.grounded && _inputState.absValY > 0)
         {
             ChangeAnimationState(2);
         }
@@ -43,7 +46,7 @@ public class PlayerManager : MonoBehaviour {
             ChangeAnimationState(3);
         }
 
-        if(!_collisionState.grounded && _collisionState.onWall)
+        if (!_collisionState.grounded && _collisionState.onWall)
         {
             ChangeAnimationState(4);
         }
@@ -51,6 +54,8 @@ public class PlayerManager : MonoBehaviour {
 
     void ChangeAnimationState(int value)
     {
+        Debug.Log("ChangeAnimationState");
+
         _animator.SetInteger("AnimState", value);
     }
 }
