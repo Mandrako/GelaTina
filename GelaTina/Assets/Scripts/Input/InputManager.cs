@@ -52,10 +52,21 @@ public class InputManager : MonoBehaviour {
     public InputAxisState[] inputs;
     public InputState inputState;
 
-	void Update () {
-	    foreach(var input in inputs)
+    void Awake()
+    {
+        if (inputState == null)
         {
-            inputState.SetButtonValue(input.button, input.value);
+            Debug.LogError("Target Input State cannot be null!");
+        }
+    }
+
+	void Update () {
+	    if (inputState != null)
+	    {
+            foreach (var input in inputs)
+            {
+                inputState.SetButtonValue(input.button, input.value);
+            }
         }
 	}
 }
