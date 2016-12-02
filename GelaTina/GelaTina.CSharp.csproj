@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\Camera\TrackTarget.cs" />
     <Compile Include="Assets\Scripts\Collision\Collectable.cs" />
     <Compile Include="Assets\Scripts\Collision\CollisionState.cs" />
+    <Compile Include="Assets\Scripts\Collision\DialogueTrigger.cs" />
     <Compile Include="Assets\Scripts\Effects\DeathSplashEffect.cs" />
     <Compile Include="Assets\Scripts\Effects\DustEffect.cs" />
     <Compile Include="Assets\Scripts\Input\InputManager.cs" />

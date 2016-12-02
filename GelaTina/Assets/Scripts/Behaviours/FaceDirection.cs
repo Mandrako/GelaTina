@@ -17,5 +17,15 @@ public class FaceDirection : AbstractBehaviour {
         }
 
         transform.localScale = new Vector3((float)_inputState.direction, 1, 1);
+
+	    for (int i = 0; i < transform.childCount; i++)
+	    {
+	        var child = transform.GetChild(i);
+	        var rectTransform = child.GetComponent<RectTransform>();
+	        if (rectTransform)
+	        {
+	            rectTransform.localScale = new Vector3((float)_inputState.direction, 1, 1);
+	        }
+	    }
     }
 }
