@@ -45,7 +45,10 @@ public class DialogueTrigger : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
-        _targetCanvas.gameObject.SetActive(false);
+        if(_targetCanvas.gameObject != null)
+        {
+            _targetCanvas.gameObject.SetActive(false);
+        }
         Destroy(gameObject);
     }
 }
