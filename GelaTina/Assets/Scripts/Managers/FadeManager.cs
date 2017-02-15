@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class FadeManager : MonoBehaviour
 {
+    [Range(0.1f, 1)]
     public float Step = 0.1f;
+    public static bool IsFading = false;
 
     private static FadeManager _instance;
     private float _transparence;
@@ -13,7 +15,7 @@ public class FadeManager : MonoBehaviour
 	    if (_instance == null)
 	    {
 	        _instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(transform.parent);
 	    }
 	    else
 	    {
@@ -23,11 +25,13 @@ public class FadeManager : MonoBehaviour
 
     public static void StartFadeOut()
     {
+        IsFading = true;
         _instance.StartCoroutine("FadeOut");
     }
 
     public static void StartFadeIn()
     {
+        IsFading = true;
         _instance.StartCoroutine("FadeIn");
     }
 
@@ -40,6 +44,10 @@ public class FadeManager : MonoBehaviour
 
             yield return null;
         }
+
+        IsFading = false;
+
+        yield return null;
     }
 
     IEnumerator FadeIn()
@@ -51,5 +59,9 @@ public class FadeManager : MonoBehaviour
 
             yield return null;
         }
+
+        IsFading = false;
+
+        yield return null;
     }
 }

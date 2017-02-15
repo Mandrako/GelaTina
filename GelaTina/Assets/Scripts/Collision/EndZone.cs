@@ -5,12 +5,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EndZone : MonoBehaviour {
-    public string targetTag = "Player";
-    public int nextSceneIndex = -1;
+    public string TargetTag = "Player";
+    public string NextSceneName;
 
     void OnTriggerEnter2D(Collider2D target)
     {
-        if (target.gameObject.tag == targetTag)
+        if (target.gameObject.tag == TargetTag)
         {
             OnEnterZone(target.gameObject);
         }
@@ -18,17 +18,30 @@ public class EndZone : MonoBehaviour {
 
     protected void OnEnterZone(GameObject target)
     {
-        Scene nextScene = SceneManager.GetSceneByBuildIndex(nextSceneIndex);
+        FadeManager.StartFadeOut();
+        StartCoroutine(AsyncLoad(NextSceneName));
 
-        Debug.Log("nextScene: " + nextScene.name + " - " + nextScene.buildIndex);
+    }
 
-        if (nextScene.buildIndex != -1)
+    IEnumerator AsyncLoad(string sceneName)
+    {
+        yield return null;
+
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+        asyncOperation.allowSceneActivation = false;
+
+        while (asyncOperation.isDone == false)
         {
-            SceneManager.LoadScene(nextSceneIndex);
-        }
-        else
-        {
-            Debug.LogError("Can't find next scene!");
+            float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
+            Debug.Log("Loading progress: " + (progress * 100) + "%");
+
+            if (asyncOperation.progress >= 0.9f && FadeManager.IsFading == false)
+            {
+                asyncOperation.allowSceneActivation = true;
+                FadeManager.StartFadeIn();
+            }
+
+            yield return null;
         }
     }
 }

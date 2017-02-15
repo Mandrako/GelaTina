@@ -105,7 +105,6 @@
     <Compile Include="Assets\Scripts\LaserBeam.cs" />
     <Compile Include="Assets\Scripts\LevelGenerator.cs" />
     <Compile Include="Assets\Scripts\Managers\FadeManager.cs" />
-    <Compile Include="Assets\Scripts\Managers\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Managers\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Managers\PlayerSpawner.cs" />
     <Compile Include="Assets\Scripts\PulseLaser.cs" />
