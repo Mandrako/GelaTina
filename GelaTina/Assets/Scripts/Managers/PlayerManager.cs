@@ -4,7 +4,6 @@ using System;
 
 public class PlayerManager : MonoBehaviour
 {
-
     private InputState _inputState;
     private Walk _walkBehaviour;
     private Animator _animator;
@@ -39,7 +38,7 @@ public class PlayerManager : MonoBehaviour
             ChangeAnimationState(2);
         }
 
-        _animator.speed = _walkBehaviour.isRunning ? _walkBehaviour.runMultiplier : 1;
+        _animator.speed = (_walkBehaviour.isRunning && _collisionState.grounded) ? _walkBehaviour.runMultiplier : 1;
 
         if (_duckBehaviour.isDucking)
         {

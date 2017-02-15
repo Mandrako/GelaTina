@@ -16,11 +16,11 @@ public class EndZone : MonoBehaviour {
         }
     }
 
-    protected void OnEnterZone(GameObject target)
+    protected void OnEnterZone(GameObject player)
     {
+        
         FadeManager.StartFadeOut();
         StartCoroutine(AsyncLoad(NextSceneName));
-
     }
 
     IEnumerator AsyncLoad(string sceneName)
