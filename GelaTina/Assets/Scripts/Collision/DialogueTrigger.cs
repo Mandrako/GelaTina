@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
+[AddComponentMenu("Collision/DialogueTrigger")]
 public class DialogueTrigger : MonoBehaviour
 {
     public string targetTag = "Player";
@@ -33,10 +34,11 @@ public class DialogueTrigger : MonoBehaviour
         _targetCanvas.gameObject.SetActive(true);
         int i = 0;
 
-        while(i < texts.Length)
+        while(i < texts.Length && target != null)
         {
             _targetTextField.text = texts[i];
             i++;
+
             yield return new WaitForSeconds(displayTime);
         }
 
@@ -45,10 +47,11 @@ public class DialogueTrigger : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
-        if(_targetCanvas.gameObject != null)
+        if(_targetCanvas != null)
         {
             _targetCanvas.gameObject.SetActive(false);
         }
+
         Destroy(gameObject);
     }
 }

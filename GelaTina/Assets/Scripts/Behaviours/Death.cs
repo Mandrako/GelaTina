@@ -12,5 +12,6 @@ public class Death : AbstractBehaviour {
 
         var clone = Instantiate(deathSplashEffectPrefab);
         clone.transform.position = transform.position;
+        FadeManager.StartFadeOut();
     }
 }

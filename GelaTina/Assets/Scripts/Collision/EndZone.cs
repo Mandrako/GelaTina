@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[AddComponentMenu("Collision/EndZone")]
 public class EndZone : MonoBehaviour {
     public string TargetTag = "Player";
     public string NextSceneName;
