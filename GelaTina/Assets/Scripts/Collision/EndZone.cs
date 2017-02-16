@@ -9,6 +9,8 @@ public class EndZone : MonoBehaviour {
     public string TargetTag = "Player";
     public string NextSceneName;
 
+    private bool _isLoading = false;
+
     void OnTriggerEnter2D(Collider2D target)
     {
         if (target.gameObject.tag == TargetTag)
@@ -19,9 +21,13 @@ public class EndZone : MonoBehaviour {
 
     protected void OnEnterZone(GameObject player)
     {
+        if (_isLoading == false)
+        {
+            FadeManager.StartFadeOut();
+            StartCoroutine(AsyncLoad(NextSceneName));
+        }
         
-        FadeManager.StartFadeOut();
-        StartCoroutine(AsyncLoad(NextSceneName));
+        _isLoading = true;
     }
 
     IEnumerator AsyncLoad(string sceneName)
