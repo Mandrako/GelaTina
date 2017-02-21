@@ -22,6 +22,7 @@ public class PauseMenuManager : MonoBehaviour
 
     void Update()
     {
+        // TODO: handle input differently to enable controller support
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             _pauseCanvas.gameObject.SetActive(!_pauseCanvas.gameObject.activeSelf);

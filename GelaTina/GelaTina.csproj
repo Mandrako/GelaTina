@@ -106,9 +106,7 @@
     <Compile Include="Assets\Scripts\LevelGenerator.cs" />
     <Compile Include="Assets\Scripts\Managers\FadeManager.cs" />
     <Compile Include="Assets\Scripts\Managers\PlayerManager.cs" />
-    <Compile Include="Assets\Scripts\Managers\PlayerSpawner.cs" />
     <Compile Include="Assets\Scripts\PulseLaser.cs" />
-    <Compile Include="Assets\Scripts\UI\Fader.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\UI\PauseMenuManager.cs" />
   </ItemGroup>
