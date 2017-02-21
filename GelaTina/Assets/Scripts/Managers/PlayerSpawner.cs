@@ -6,6 +6,7 @@ public class PlayerSpawner : MonoBehaviour
 {
     public GameObject PlayerPrefab;
 
+    //TODO: Implement or delete this class
 
 	void Start () {
 		
