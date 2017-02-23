@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class PauseMenuManager : MonoBehaviour
 {
     private Canvas _pauseCanvas;
+    private float _previousTimeScale;
+    private bool _isPaused = false;
 
 	void Start ()
 	{
@@ -23,7 +25,19 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            _pauseCanvas.gameObject.SetActive(!_pauseCanvas.gameObject.activeSelf);
+            _isPaused = !_isPaused;
+
+            if(_isPaused == true)
+            {
+                _pauseCanvas.gameObject.SetActive(true);
+                _previousTimeScale = Time.timeScale;
+                Time.timeScale = 0;
+            }
+            else
+            {
+                _pauseCanvas.gameObject.SetActive(false);
+                Time.timeScale = _previousTimeScale;
+            }
         }
     }
 
@@ -35,6 +49,8 @@ public class PauseMenuManager : MonoBehaviour
 
     public void Quit()
     {
+        Time.timeScale = _previousTimeScale;
+
         SceneManager.LoadScene(0);
     }
 }
