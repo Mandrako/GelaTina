@@ -10,8 +10,15 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void ToggleLoad()
+    {
+        // TODO: implement a load screen that toggles using this function
+        throw new NotImplementedException();
+    }
+
     public void ToggleOptions()
     {
+        // TODO: implement an options screen that toggles using this function
         throw new NotImplementedException();
     }
 
