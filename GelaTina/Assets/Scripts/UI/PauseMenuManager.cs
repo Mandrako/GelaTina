@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenuManager : MonoBehaviour
 {
@@ -22,8 +21,7 @@ public class PauseMenuManager : MonoBehaviour
 
     void Update()
     {
-        // TODO: handle input differently to enable controller support
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetButtonDown("Cancel"))
         {
             _pauseCanvas.gameObject.SetActive(!_pauseCanvas.gameObject.activeSelf);
         }
@@ -37,7 +35,6 @@ public class PauseMenuManager : MonoBehaviour
 
     public void Quit()
     {
-        // TODO: implement a quit function
-        throw new NotImplementedException();
+        SceneManager.LoadScene(0);
     }
 }
