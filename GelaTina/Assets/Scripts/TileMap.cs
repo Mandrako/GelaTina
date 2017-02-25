@@ -12,21 +12,12 @@ public class TileMap : MonoBehaviour
     public Vector2 gridSize = new Vector2();
     public int pixelsToUnits = 100;
     public int tileID = 0;
+    public int layerDepth = 0;
     public GameObject tiles;
 
     public Sprite currentTileBrush
     {
         get { return spriteReferences[tileID] as Sprite; }
-    }
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
     }
 
     void OnDrawGizmosSelected()

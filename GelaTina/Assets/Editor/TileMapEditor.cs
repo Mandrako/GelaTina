@@ -20,6 +20,15 @@ public class TileMapEditor : Editor
     {
         EditorGUILayout.BeginVertical();
 
+        var oldDepth = map.layerDepth;
+
+        map.layerDepth = EditorGUILayout.IntField("Layer Depth: ", map.layerDepth);
+
+        if(map.layerDepth != oldDepth)
+        {
+            UpdateDepth();
+        }
+
         var oldSize = map.mapSize;
 
         map.mapSize = EditorGUILayout.Vector2Field("Map Size:", map.mapSize);
@@ -72,9 +81,10 @@ public class TileMapEditor : Editor
 
         if(map.tiles == null)
         {
-            var go = new GameObject("Tiles");
+            var go = new GameObject();
             go.transform.SetParent(map.transform);
             go.transform.position = Vector3.zero;
+            go.name = "Layer_" + map.layerDepth;
 
             map.tiles = go;
         }
@@ -131,6 +141,17 @@ public class TileMapEditor : Editor
         map.pixelsToUnits = (int)(sprite.rect.width / sprite.bounds.size.x);
 
         map.gridSize = new Vector2((width / map.pixelsToUnits) * map.mapSize.x, (height / map.pixelsToUnits) * map.mapSize.y);
+    }
+
+    void UpdateDepth()
+    {
+        map.tiles.name = "Layer_" + map.layerDepth;
+
+        for (int i = 0; i < map.tiles.transform.childCount; i++)
+        {
+            var tile = map.tiles.transform.GetChild(i);
+            tile.position = new Vector3(tile.position.x, tile.position.y, map.layerDepth);
+        }
     }
 
     void CreateBrush()
@@ -213,7 +234,7 @@ public class TileMapEditor : Editor
         x += map.transform.position.x + tileSize / 2;
         y += map.transform.position.y + tileSize / 2;
 
-        brush.transform.position = new Vector3(x, y, map.transform.position.z);
+        brush.transform.position = new Vector3(x, y, map.layerDepth);
     }
 
     void Draw()
@@ -222,14 +243,15 @@ public class TileMapEditor : Editor
 
         var posX = brush.transform.position.x;
         var posY = brush.transform.position.y;
+        var posZ = map.layerDepth;
 
-        GameObject tile = GameObject.Find(map.name + "/Tiles/tile_" + id);
+        GameObject tile = GameObject.Find(map.name + "/Layer_" + map.layerDepth + "/tile_" + id);
         
         if(tile == null)
         {
             tile = new GameObject("tile_" + id);
             tile.transform.SetParent(map.tiles.transform);
-            tile.transform.position = new Vector3(posX, posY, 0);
+            tile.transform.position = new Vector3(posX, posY, posZ);
             tile.AddComponent<SpriteRenderer>();
         }
 
@@ -240,7 +262,7 @@ public class TileMapEditor : Editor
     {
         var id = brush.tileID.ToString();
 
-        GameObject tile = GameObject.Find(map.name + "/Tiles/tile_" + id);
+        GameObject tile = GameObject.Find(map.name + "/Layer_" + map.layerDepth + "/tile_" + id);
 
         if (tile != null)
         {
