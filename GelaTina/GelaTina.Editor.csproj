@@ -121,6 +121,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\LevelGeneratorInspector.cs" />
+    <Compile Include="Assets\Editor\NewTileMapMenu.cs" />
+    <Compile Include="Assets\Editor\TileMapEditor.cs" />
+    <Compile Include="Assets\Editor\TilePickerWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\2DLight.shader" />
