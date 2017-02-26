@@ -8,6 +8,11 @@ public class TileBrush : MonoBehaviour
     public int tileID = 0;
     public SpriteRenderer renderer2D;
 
+    void Awake()
+    {
+        DestroyImmediate(gameObject);
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

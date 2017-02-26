@@ -14,6 +14,7 @@ public class TileMap : MonoBehaviour
     public int tileID = 0;
     public int layerDepth = 0;
     public GameObject tiles;
+    public bool isSolid;
 
     public Sprite currentTileBrush
     {

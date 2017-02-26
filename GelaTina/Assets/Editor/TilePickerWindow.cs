@@ -43,6 +43,7 @@ public class TilePickerWindow : EditorWindow
             if(texture2D != null)
             {
                 scale = (Scale)EditorGUILayout.EnumPopup("Zoom", scale);
+
                 var newScale = ((int)scale) + 1;
                 var newTextureSize = new Vector2(texture2D.width, texture2D.height) * newScale;
                 var offset = new Vector2(10, 25);

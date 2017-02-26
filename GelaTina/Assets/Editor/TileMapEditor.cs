@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(TileMap))]
@@ -19,6 +17,15 @@ public class TileMapEditor : Editor
     public override void OnInspectorGUI()
     {
         EditorGUILayout.BeginVertical();
+
+        var oldSolidState = map.isSolid;
+
+        map.isSolid = EditorGUILayout.Toggle("Solid Tiles", map.isSolid);
+
+        if(oldSolidState != map.isSolid)
+        {
+            UpdateSolidState();
+        }
 
         var oldDepth = map.layerDepth;
 
@@ -150,7 +157,30 @@ public class TileMapEditor : Editor
         for (int i = 0; i < map.tiles.transform.childCount; i++)
         {
             var tile = map.tiles.transform.GetChild(i);
+
             tile.position = new Vector3(tile.position.x, tile.position.y, map.layerDepth);
+        }
+    }
+
+    void UpdateSolidState()
+    {
+        for (int i = 0; i < map.tiles.transform.childCount; i++)
+        {
+            var tile = map.tiles.transform.GetChild(i);
+
+            if (map.isSolid)
+            {
+                tile.gameObject.layer = LayerMask.NameToLayer("Solid");
+                tile.gameObject.AddComponent<BoxCollider2D>();
+            }
+            else
+            {
+                tile.gameObject.layer = LayerMask.NameToLayer("Parallax");
+                if (tile.gameObject.GetComponent<BoxCollider2D>())
+                {
+                    DestroyImmediate(tile.gameObject.GetComponent<BoxCollider2D>());
+                }
+            }
         }
     }
 
@@ -176,6 +206,11 @@ public class TileMapEditor : Editor
 
     void NewBrush()
     {
+        if (map.GetComponentInChildren<TileBrush>())
+        {
+            DestroyImmediate(map.GetComponentInChildren<TileBrush>().gameObject);
+        }
+
         if(brush == null)
         {
             CreateBrush();
@@ -256,6 +291,20 @@ public class TileMapEditor : Editor
         }
 
         tile.GetComponent<SpriteRenderer>().sprite = brush.renderer2D.sprite;
+
+        if (map.isSolid)
+        {
+            tile.gameObject.layer = LayerMask.NameToLayer("Solid");
+
+            if (!tile.gameObject.GetComponent<BoxCollider2D>())
+            {
+                tile.gameObject.AddComponent<BoxCollider2D>();
+            }
+        }
+        else
+        {
+            tile.gameObject.layer = LayerMask.NameToLayer("Parallax");
+        }
     }
 
     void RemoveTile()
