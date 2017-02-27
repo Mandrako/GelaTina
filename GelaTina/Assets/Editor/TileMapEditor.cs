@@ -29,7 +29,7 @@ public class TileMapEditor : Editor
 
         var oldDepth = map.layerDepth;
 
-        map.layerDepth = EditorGUILayout.IntField("Layer Depth: ", map.layerDepth);
+        map.layerDepth = EditorGUILayout.DelayedFloatField("Layer Depth: ", map.layerDepth);
 
         if(map.layerDepth != oldDepth)
         {
