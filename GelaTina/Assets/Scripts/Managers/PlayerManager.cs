@@ -53,8 +53,6 @@ public class PlayerManager : MonoBehaviour
 
     void ChangeAnimationState(int value)
     {
-        Debug.Log("ChangeAnimationState");
-
         _animator.SetInteger("AnimState", value);
     }
 }

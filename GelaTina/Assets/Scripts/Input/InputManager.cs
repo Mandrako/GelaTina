@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
 
 public enum Buttons
@@ -56,7 +55,7 @@ public class InputManager : MonoBehaviour {
     {
         if (inputState == null)
         {
-            Debug.LogError("Target Input State cannot be null!");
+            Debug.LogError("Target Input State cannot be null!", gameObject);
         }
     }
 

@@ -7,9 +7,8 @@ public class TrackTarget : MonoBehaviour
 {
     public Transform target;
     public float dampTime = 0.15f;
-    public int orthographicSize = 100;
-    [Range(1, 5)]
-    public float zoomLevel = 1f;
+    [Range(4, 8)]
+    public float zoomLevel = 4f;
     public Vector2 offset;
 
     private Camera _camera;
@@ -18,15 +17,18 @@ public class TrackTarget : MonoBehaviour
     void Awake()
     {
         _camera = GetComponent<Camera>();
+        SetZoomLevel();
     }
 
     void Start()
     {
-        SetZoomLevel();
-
         if (target)
         {
             transform.position = new Vector3(target.position.x + offset.x, target.position.y + offset.y, transform.position.z);
+        }
+        else
+        {
+            Debug.LogWarning("The TrackTarget script doesn't have a target!", gameObject);
         }
     }
 
@@ -46,6 +48,6 @@ public class TrackTarget : MonoBehaviour
 
     void SetZoomLevel()
     {
-        _camera.orthographicSize = orthographicSize / zoomLevel;
+        _camera.orthographicSize = (Screen.height / 2) / zoomLevel;
     }
 }

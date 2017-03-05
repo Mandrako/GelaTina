@@ -4,7 +4,6 @@ using System.Collections;
 [RequireComponent(typeof(SpriteRenderer))]
 public class LaserBeam : MonoBehaviour
 {
-    public string targetTag = "Player";
     public Vector3 startPoint
     {
         get { return _startPoint; }
@@ -52,18 +51,5 @@ public class LaserBeam : MonoBehaviour
         }
 
         transform.localScale = new Vector3(distance / _sprite.texture.width, transform.localScale.y, transform.localScale.z);
-    }
-
-    void OnTriggerEnter2D(Collider2D target)
-    {
-        if (target.gameObject.tag == targetTag)
-        {
-            Death dieBehaviour = target.gameObject.GetComponent<Death>();
-
-            if(dieBehaviour != null)
-            {
-                dieBehaviour.Die();
-            }
-        }
     }
 }
