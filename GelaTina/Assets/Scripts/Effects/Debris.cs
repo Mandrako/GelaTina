@@ -4,24 +4,27 @@ using UnityEngine;
 
 public class Debris : MonoBehaviour
 {
-    private SpriteRenderer renderer2D;
-    private Color start;
-    private Color end;
-    private float t = 0f;
+    [Range(0f, 2f)]
+    public float fadeSpeed;
+
+    private SpriteRenderer _renderer2D;
+    private Color _start;
+    private Color _end;
+    private float _t = 0f;
 
     void Start()
     {
-        renderer2D = GetComponent<SpriteRenderer>();
-        start = renderer2D.color;
-        end = new Color(start.r, start.g, start.b, 0f);
+        _renderer2D = GetComponent<SpriteRenderer>();
+        _start = _renderer2D.color;
+        _end = new Color(_start.r, _start.g, _start.b, 0f);
     }
 
     void Update()
     {
-        t += Time.deltaTime;
-        renderer2D.material.color = Color.Lerp(start, end, t);
+        _t += Time.deltaTime * fadeSpeed;
+        _renderer2D.material.color = Color.Lerp(_start, _end, _t);
 
-        if(renderer2D.material.color.a <= 0)
+        if(_renderer2D.material.color.a <= 0)
         {
             Destroy(gameObject);
         }
