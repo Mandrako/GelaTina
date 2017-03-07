@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public string NewGameScene;
+
     public void StartNewGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(NewGameScene);
     }
 
     public void ToggleLoad()

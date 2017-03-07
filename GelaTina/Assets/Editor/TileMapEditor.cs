@@ -8,6 +8,8 @@ public class TileMapEditor : Editor
 
     TileBrush brush;
     Vector3 mouseHitPos;
+    bool _solidFlag;
+    int _sortingOrder;
 
     bool mouseOnMap
     {
@@ -18,20 +20,11 @@ public class TileMapEditor : Editor
     {
         EditorGUILayout.BeginVertical();
 
-        var oldSolidState = map.isSolid;
-
-        map.isSolid = EditorGUILayout.Toggle("Solid Tiles", map.isSolid);
-
-        if(oldSolidState != map.isSolid)
-        {
-            UpdateSolidState();
-        }
-
         var oldDepth = map.layerDepth;
 
         map.layerDepth = EditorGUILayout.DelayedFloatField("Layer Depth: ", map.layerDepth);
 
-        if(map.layerDepth != oldDepth)
+        if (map.layerDepth != oldDepth)
         {
             UpdateDepth();
         }
@@ -40,7 +33,7 @@ public class TileMapEditor : Editor
 
         map.mapSize = EditorGUILayout.Vector2Field("Map Size:", map.mapSize);
 
-        if(map.mapSize != oldSize)
+        if (map.mapSize != oldSize)
         {
             UpdateCalculations();
         }
@@ -48,14 +41,14 @@ public class TileMapEditor : Editor
         var oldTexture = map.texture2D;
         map.texture2D = (Texture2D)EditorGUILayout.ObjectField("Texture2D:", map.texture2D, typeof(Texture2D), false);
 
-        if(oldTexture != map.texture2D)
+        if (oldTexture != map.texture2D)
         {
             UpdateCalculations();
             map.tileID = 1;
             CreateBrush();
         }
 
-        if(map.texture2D == null)
+        if (map.texture2D == null)
         {
             EditorGUILayout.HelpBox("You have not selected a texture 2D yet.", MessageType.Warning);
         }
@@ -67,15 +60,29 @@ public class TileMapEditor : Editor
 
             EditorGUILayout.LabelField("Grid Size In Units:", map.gridSize.x + "x" + map.gridSize.y);
             EditorGUILayout.LabelField("Pixels To Units:", map.pixelsToUnits.ToString());
+
+            _sortingOrder = EditorGUILayout.IntField("Order In Layer", _sortingOrder);
+
+            _solidFlag = EditorGUILayout.Toggle("Solid", _solidFlag);
+
+            EditorGUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("Apply solid state to all"))
+            {
+                UpdateSolidState();
+            }
+
             UpdateBrush(map.currentTileBrush);
 
-            if(GUILayout.Button("Clear Tiles"))
+            if (GUILayout.Button("Clear Tiles"))
             {
                 if (EditorUtility.DisplayDialog("Clear map's tiles?", "Are you sure?", "Clear", "Cancel"))
                 {
                     ClearMap();
                 }
             }
+
+            EditorGUILayout.EndHorizontal();
         }
 
         EditorGUILayout.EndVertical();
@@ -86,7 +93,7 @@ public class TileMapEditor : Editor
         map = target as TileMap;
         Tools.current = Tool.View;
 
-        if(map.tiles == null)
+        if (map.tiles == null)
         {
             var go = new GameObject();
             go.transform.SetParent(map.transform);
@@ -96,7 +103,7 @@ public class TileMapEditor : Editor
             map.tiles = go;
         }
 
-        if(map.texture2D != null)
+        if (map.texture2D != null)
         {
             UpdateCalculations();
             NewBrush();
@@ -110,16 +117,16 @@ public class TileMapEditor : Editor
 
     void OnSceneGUI()
     {
-        if(brush != null)
+        if (brush != null)
         {
             UpdateHitPosition();
             MoveBrush();
 
-            if(map.texture2D != null && mouseOnMap)
+            if (map.texture2D != null && mouseOnMap)
             {
                 Event current = Event.current;
 
-                if(current.shift)
+                if (current.shift)
                 {
                     Draw();
                 }
@@ -168,19 +175,8 @@ public class TileMapEditor : Editor
         {
             var tile = map.tiles.transform.GetChild(i);
 
-            if (map.isSolid)
-            {
-                tile.gameObject.layer = LayerMask.NameToLayer("Solid");
-                tile.gameObject.AddComponent<BoxCollider2D>();
-            }
-            else
-            {
-                tile.gameObject.layer = LayerMask.NameToLayer("Parallax");
-                if (tile.gameObject.GetComponent<BoxCollider2D>())
-                {
-                    DestroyImmediate(tile.gameObject.GetComponent<BoxCollider2D>());
-                }
-            }
+            tile.gameObject.GetComponent<BoxCollider2D>().enabled = _solidFlag;
+            tile.gameObject.layer = _solidFlag ? LayerMask.NameToLayer("Solid") : LayerMask.NameToLayer("Parallax");
         }
     }
 
@@ -188,7 +184,7 @@ public class TileMapEditor : Editor
     {
         var sprite = map.currentTileBrush;
 
-        if(sprite != null)
+        if (sprite != null)
         {
             GameObject go = new GameObject("Brush");
             go.transform.SetParent(map.transform);
@@ -211,7 +207,7 @@ public class TileMapEditor : Editor
             DestroyImmediate(map.GetComponentInChildren<TileBrush>().gameObject);
         }
 
-        if(brush == null)
+        if (brush == null)
         {
             CreateBrush();
         }
@@ -219,7 +215,7 @@ public class TileMapEditor : Editor
 
     void DestroyBrush()
     {
-        if(brush != null)
+        if (brush != null)
         {
             DestroyImmediate(brush.gameObject);
         }
@@ -227,7 +223,7 @@ public class TileMapEditor : Editor
 
     public void UpdateBrush(Sprite sprite)
     {
-        if(brush != null)
+        if (brush != null)
         {
             brush.UpdateBrush(sprite);
         }
@@ -240,7 +236,7 @@ public class TileMapEditor : Editor
         var hit = Vector3.zero;
         var dist = 0f;
 
-        if(p.Raycast(ray, out dist))
+        if (p.Raycast(ray, out dist))
         {
             hit = ray.origin + ray.direction.normalized * dist;
             mouseHitPos = map.transform.InverseTransformPoint(hit);
@@ -281,30 +277,26 @@ public class TileMapEditor : Editor
         var posZ = map.layerDepth;
 
         GameObject tile = GameObject.Find(map.name + "/Layer_" + map.layerDepth + "/tile_" + id);
-        
-        if(tile == null)
+
+        if (tile == null)
         {
             tile = new GameObject("tile_" + id);
             tile.transform.SetParent(map.tiles.transform);
             tile.transform.position = new Vector3(posX, posY, posZ);
             tile.AddComponent<SpriteRenderer>();
+            tile.AddComponent<BoxCollider2D>();
         }
 
-        tile.GetComponent<SpriteRenderer>().sprite = brush.renderer2D.sprite;
+        var renderer = tile.GetComponent<SpriteRenderer>();
+        renderer.sprite = brush.renderer2D.sprite;
+        renderer.sortingOrder = _sortingOrder;
 
-        if (map.isSolid)
-        {
-            tile.gameObject.layer = LayerMask.NameToLayer("Solid");
+        var collider = tile.GetComponent<BoxCollider2D>();
+        collider.enabled = _solidFlag;
 
-            if (!tile.gameObject.GetComponent<BoxCollider2D>())
-            {
-                tile.gameObject.AddComponent<BoxCollider2D>();
-            }
-        }
-        else
-        {
-            tile.gameObject.layer = LayerMask.NameToLayer("Parallax");
-        }
+        collider.size = renderer.bounds.size;
+
+        tile.gameObject.layer = _solidFlag ? LayerMask.NameToLayer("Solid") : LayerMask.NameToLayer("Parallax");
     }
 
     void RemoveTile()

@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\Behaviours\WallSlide.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraParallax.cs" />
     <Compile Include="Assets\Scripts\Camera\TrackTarget.cs" />
+    <Compile Include="Assets\Scripts\ClickToContinue.cs" />
     <Compile Include="Assets\Scripts\Collision\Collectable.cs" />
     <Compile Include="Assets\Scripts\Collision\CollisionState.cs" />
     <Compile Include="Assets\Scripts\Collision\DialogueTrigger.cs" />
