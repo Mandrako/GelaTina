@@ -5,9 +5,13 @@ using UnityEngine;
 public class DoorTrigger : MonoBehaviour
 {
     public Door door;
+    public bool ignoreTrigger;
 
     void OnTriggerEnter2D(Collider2D target)
     {
+        if (ignoreTrigger)
+            return;
+        
         if (target.gameObject.tag == "Player")
         {
             door.Open();
@@ -16,9 +20,24 @@ public class DoorTrigger : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D target)
     {
-        if(target.gameObject.tag == "Player")
+        if (ignoreTrigger)
+            return;
+
+        if (target.gameObject.tag == "Player")
         {
             door.Close();
+        }
+    }
+
+    public void Toggle(bool value)
+    {
+        if (value)
+        {
+            door.Open();
+        }
+        else
+        {
+            door.Close();   
         }
     }
 }
