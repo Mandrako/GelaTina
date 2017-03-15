@@ -98,6 +98,7 @@
     <Compile Include="Assets\Scripts\Collision\CollisionState.cs" />
     <Compile Include="Assets\Scripts\Collision\DialogueTrigger.cs" />
     <Compile Include="Assets\Scripts\Collision\EndZone.cs" />
+    <Compile Include="Assets\Scripts\Collision\ImpactSound.cs" />
     <Compile Include="Assets\Scripts\Door.cs" />
     <Compile Include="Assets\Scripts\DoorTrigger.cs" />
     <Compile Include="Assets\Scripts\Effects\DeathSplashEffect.cs" />
