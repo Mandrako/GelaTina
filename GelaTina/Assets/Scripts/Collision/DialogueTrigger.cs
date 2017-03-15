@@ -22,7 +22,7 @@ public class DialogueTrigger : MonoBehaviour
 
         if (target.gameObject.tag == targetTag)
         {
-            if(_targetCanvas != null && _targetTextField != null)
+            if (_targetCanvas != null && _targetTextField != null)
             {
                 StartCoroutine(OnDialogue(target.gameObject));
             }
@@ -34,7 +34,7 @@ public class DialogueTrigger : MonoBehaviour
         _targetCanvas.gameObject.SetActive(true);
         int i = 0;
 
-        while(i < texts.Length && target != null)
+        while (i < texts.Length && target != null)
         {
             _targetTextField.text = texts[i];
             i++;
@@ -47,11 +47,23 @@ public class DialogueTrigger : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
-        if(_targetCanvas != null)
+        if (_targetCanvas != null)
         {
             _targetCanvas.gameObject.SetActive(false);
         }
 
         Destroy(gameObject);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+
+        var bc2D = GetComponent<BoxCollider2D>();
+        var pos = bc2D.transform.position;
+
+        var newPos = new Vector2(pos.x + bc2D.offset.x, pos.y + bc2D.offset.y);
+
+        Gizmos.DrawWireCube(newPos, new Vector2(bc2D.size.x, bc2D.size.y));
     }
 }

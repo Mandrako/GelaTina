@@ -9,6 +9,7 @@ public class ButtonSwitch : MonoBehaviour
 
     private bool _isDown;
     private Animator _animator;
+    private Collider2D _lastTriggerer;
 
     void Start()
     {
@@ -17,6 +18,14 @@ public class ButtonSwitch : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D target)
     {
+        if (target.tag == "Deadly")
+            return;
+
+        if (_lastTriggerer == null)
+        {
+            _lastTriggerer = target;
+        }
+
         _isDown = true;
         _animator.SetInteger("AnimState", 1);
 
@@ -31,7 +40,7 @@ public class ButtonSwitch : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D target)
     {
-        if (isSticky && _isDown)
+        if ((isSticky && _isDown) || target != _lastTriggerer)
             return;
 
         _isDown = false;
@@ -43,6 +52,21 @@ public class ButtonSwitch : MonoBehaviour
             if (trigger != null)
             {
                 trigger.Toggle(false);
+            }
+        }
+
+        _lastTriggerer = null;
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = isSticky ? Color.red : Color.green;
+
+        foreach(var trigger in doorTriggers)
+        {
+            if(trigger != null)
+            {
+                Gizmos.DrawLine(transform.position, trigger.door.transform.position);
             }
         }
     }

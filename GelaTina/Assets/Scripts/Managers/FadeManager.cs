@@ -25,14 +25,36 @@ public class FadeManager : MonoBehaviour
 
     public static void StartFadeOut()
     {
+        if (IsFading)
+        {
+            _instance.StopCoroutine(_instance.FadeOut());
+        }
+
         IsFading = true;
         _instance.StartCoroutine("FadeOut");
     }
 
     public static void StartFadeIn()
     {
+        if (IsFading)
+        {
+            _instance.StopCoroutine(_instance.FadeIn());
+        }
+
         IsFading = true;
         _instance.StartCoroutine("FadeIn");
+    }
+
+    public static void Reset()
+    {
+        _instance.ResetFade();
+    }
+
+    void ResetFade()
+    {
+        StopAllCoroutines();
+        GetComponent<CanvasGroup>().alpha = 0;
+        IsFading = false;
     }
 
     IEnumerator FadeOut()
