@@ -61,7 +61,8 @@ public class TilePickerWindow : EditorWindow
 
                 var grid = new Vector2(newTextureSize.x / tile.x, newTextureSize.y / tile.y);
 
-                var selectionPos = new Vector2(tile.x * currentSelection.x + offset.x, tile.y * currentSelection.y + offset.y);
+                var selectionPos = new Vector2(tile.x * currentSelection.x + offset.x,
+                                               tile.y * currentSelection.y + offset.y);
 
                 var boxTex = new Texture2D(1, 1);
                 boxTex.SetPixel(0, 0, new Color(0, 0.5f, 1f, 0.4f));
@@ -73,21 +74,29 @@ public class TilePickerWindow : EditorWindow
                 GUI.Box(new Rect(selectionPos.x, selectionPos.y, tile.x, tile.y), "", style);
 
                 var cEvent = Event.current;
-                Vector2 mousePos = new Vector2(cEvent.mousePosition.x, cEvent.mousePosition.y);
+                Vector2 mousePos = new Vector2(cEvent.mousePosition.x - offset.x, cEvent.mousePosition.y - offset.y);
 
                 if (cEvent.type == EventType.mouseDown && cEvent.button == 0)
                 {
-                    currentSelection.x = Mathf.Floor((mousePos.x + scrollPosition.x) / tile.x);
-                    currentSelection.y = Mathf.Floor((mousePos.y + scrollPosition.y) / tile.y);
+                    currentSelection.x = Mathf.Floor(mousePos.x / tile.x);
+                    currentSelection.y = Mathf.Floor(mousePos.y / tile.y);
 
-                    if(currentSelection.x > grid.x - 1)
+                    if (currentSelection.x > grid.x - 1)
                     {
                         currentSelection.x = grid.x - 1;
+                    }
+                    else if(currentSelection.x < 0)
+                    {
+                        currentSelection.x = 0;
                     }
 
                     if (currentSelection.y > grid.y - 1)
                     {
                         currentSelection.y = grid.y - 1;
+                    }
+                    else if (currentSelection.y < 0)
+                    {
+                        currentSelection.y = 0;
                     }
 
                     selection.tileID = (int)(currentSelection.x + (currentSelection.y * grid.x) + 1);

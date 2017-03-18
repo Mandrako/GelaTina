@@ -126,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\2DLight.shader" />
+    <None Include="Assets\Shaders\OverlayNoZTest.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

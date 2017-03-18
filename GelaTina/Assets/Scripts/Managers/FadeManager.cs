@@ -7,53 +7,50 @@ public class FadeManager : MonoBehaviour
     public float Step = 0.1f;
     public static bool IsFading = false;
 
-    private static FadeManager _instance;
     private float _transparence;
+    private CanvasGroup _canvasGroup;
 
-	void Awake ()
-	{
-	    if (_instance == null)
-	    {
-	        _instance = this;
-            DontDestroyOnLoad(transform.parent);
-	    }
-	    else
-	    {
-	        Destroy(gameObject);
-	    }
-	}
+    void Start()
+    {
+        _canvasGroup = GetComponent<CanvasGroup>();
 
-    public static void StartFadeOut()
+        _canvasGroup.alpha = 1;
+        _transparence = _canvasGroup.alpha;
+
+        StartFadeIn();
+    }
+
+    public void StartFadeOut()
     {
         if (IsFading)
         {
-            _instance.StopCoroutine(_instance.FadeOut());
+            StopAllCoroutines();
         }
 
         IsFading = true;
-        _instance.StartCoroutine("FadeOut");
+        StartCoroutine("FadeOut");
     }
 
-    public static void StartFadeIn()
+    public void StartFadeIn()
     {
         if (IsFading)
         {
-            _instance.StopCoroutine(_instance.FadeIn());
+            StopAllCoroutines();
         }
 
         IsFading = true;
-        _instance.StartCoroutine("FadeIn");
+        StartCoroutine("FadeIn");
     }
 
-    public static void Reset()
+    public void Reset()
     {
-        _instance.ResetFade();
+        ResetFade();
     }
 
     void ResetFade()
     {
         StopAllCoroutines();
-        GetComponent<CanvasGroup>().alpha = 0;
+        _canvasGroup.alpha = 0;
         IsFading = false;
     }
 
@@ -62,7 +59,7 @@ public class FadeManager : MonoBehaviour
         while (_transparence < 1)
         {
             _transparence += Step * Time.deltaTime;
-            GetComponent<CanvasGroup>().alpha = _transparence;
+            _canvasGroup.alpha = _transparence;
 
             yield return null;
         }
@@ -77,7 +74,7 @@ public class FadeManager : MonoBehaviour
         while (_transparence > 0)
         {
             _transparence -= Step * Time.deltaTime;
-            GetComponent<CanvasGroup>().alpha = _transparence;
+            _canvasGroup.alpha = _transparence;
 
             yield return null;
         }

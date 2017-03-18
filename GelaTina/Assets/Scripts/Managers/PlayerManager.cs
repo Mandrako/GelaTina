@@ -9,7 +9,6 @@ public class PlayerManager : MonoBehaviour
     private Animator _animator;
     private CollisionState _collisionState;
     private Duck _duckBehaviour;
-    private LongJump _longJumpBehaviour;
 
     void Awake()
     {
@@ -18,7 +17,6 @@ public class PlayerManager : MonoBehaviour
         _animator = GetComponent<Animator>();
         _collisionState = GetComponent<CollisionState>();
         _duckBehaviour = GetComponent<Duck>();
-        _longJumpBehaviour = GetComponent<LongJump>();
     }
 
     void Update()

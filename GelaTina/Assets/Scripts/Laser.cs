@@ -42,6 +42,11 @@ public class Laser : MonoBehaviour {
         }
     }
 
+    public void Toggle(bool value)
+    {
+        _isActive = value;
+    }
+
     protected virtual void DrawLaser()
     {
         if (_points.Count - 1 < _beams.Count)

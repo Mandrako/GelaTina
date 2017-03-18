@@ -11,6 +11,11 @@ public class ClickToContinue : MonoBehaviour
     {
         if (Input.anyKeyDown && !_loadLock)
         {
+            if (string.IsNullOrEmpty(scene))
+            {
+                scene = SceneManager.GetActiveScene().name;
+            }
+
             LoadScene();
         }
     }
@@ -18,6 +23,7 @@ public class ClickToContinue : MonoBehaviour
     void LoadScene()
     {
         _loadLock = true;
+
         SceneManager.LoadScene(scene);
     }
 }

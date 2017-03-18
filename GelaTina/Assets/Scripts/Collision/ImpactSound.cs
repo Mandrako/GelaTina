@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ImpactSound : MonoBehaviour
 {
+    public float velocityThreshold = 125;
     public AudioClip[] clips;
 
     private AudioSource _source;
@@ -15,12 +16,11 @@ public class ImpactSound : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        Debug.Log("coll: " + coll.gameObject.name);
+        if (clips.Length == 0 || coll.relativeVelocity.magnitude < velocityThreshold)
+            return;
 
         if(coll.gameObject.layer == LayerMask.NameToLayer("Solid") && clips.Length > 0)
         {
-            Debug.Log("play");
-
             var randomIndex = Random.Range(0, clips.Length);
 
             _source.clip = clips[randomIndex];

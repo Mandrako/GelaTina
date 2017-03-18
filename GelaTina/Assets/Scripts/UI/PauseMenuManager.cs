@@ -50,7 +50,6 @@ public class PauseMenuManager : MonoBehaviour
     public void Quit()
     {
         Time.timeScale = _previousTimeScale;
-        FadeManager.Reset();
         SceneManager.LoadScene(1);
     }
 }

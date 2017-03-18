@@ -1,11 +1,12 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 [AddComponentMenu("Behaviours/Death")]
 public class Death : AbstractBehaviour {
     public GameObject deathSplashEffectPrefab;
     public Debris debris;
     public int totalDebris = 10;
+    public delegate void OnDestroy();
+    public event OnDestroy DestroyCallback;
 
     void OnCollisionEnter2D(Collision2D target)
     {
@@ -28,12 +29,14 @@ public class Death : AbstractBehaviour {
             body2D.AddForce(Vector3.up * UnityEngine.Random.Range(4000, 6000));
         }
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
 
         var clone = Instantiate(deathSplashEffectPrefab);
         clone.transform.position = transform.position;
 
-        // TODO: this throws an error if the scene lacks a 'fade canvas'
-        FadeManager.StartFadeOut();
+        if (DestroyCallback != null)
+        {
+            DestroyCallback();
+        }
     }
 }

@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class EndZone : MonoBehaviour {
     public string TargetTag = "Player";
     public string NextSceneName;
+    public delegate void OnLoadBegin();
+    public event OnLoadBegin OnLoadBeginCallback;
 
     private bool _isLoading = false;
 
@@ -23,7 +25,16 @@ public class EndZone : MonoBehaviour {
     {
         if (_isLoading == false)
         {
-            FadeManager.StartFadeOut();
+            if(OnLoadBeginCallback != null)
+            {
+                OnLoadBeginCallback();
+            }
+
+            if (string.IsNullOrEmpty(NextSceneName))
+            {
+                NextSceneName = SceneManager.GetActiveScene().name;
+            }
+
             StartCoroutine(AsyncLoad(NextSceneName));
         }
         
@@ -45,7 +56,6 @@ public class EndZone : MonoBehaviour {
             if (asyncOperation.progress >= 0.9f && FadeManager.IsFading == false)
             {
                 asyncOperation.allowSceneActivation = true;
-                FadeManager.StartFadeIn();
             }
 
             yield return null;

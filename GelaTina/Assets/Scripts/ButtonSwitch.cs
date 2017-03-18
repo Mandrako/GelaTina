@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ButtonSwitch : MonoBehaviour
 {
     public DoorTrigger[] doorTriggers;
+    public Laser[] lasers;
     public bool isSticky;
 
     private bool _isDown;
@@ -36,6 +35,14 @@ public class ButtonSwitch : MonoBehaviour
                 trigger.Toggle(true);
             }
         }
+
+        foreach(var laser in lasers)
+        {
+            if(laser != null)
+            {
+                laser.Toggle(false);
+            }
+        }
     }
 
     void OnTriggerExit2D(Collider2D target)
@@ -55,6 +62,14 @@ public class ButtonSwitch : MonoBehaviour
             }
         }
 
+        foreach (var laser in lasers)
+        {
+            if (laser != null)
+            {
+                laser.Toggle(true);
+            }
+        }
+
         _lastTriggerer = null;
     }
 
@@ -67,6 +82,14 @@ public class ButtonSwitch : MonoBehaviour
             if(trigger != null)
             {
                 Gizmos.DrawLine(transform.position, trigger.door.transform.position);
+            }
+        }
+
+        foreach (var laser in lasers)
+        {
+            if (laser != null)
+            {
+                Gizmos.DrawLine(transform.position, laser.transform.position);
             }
         }
     }
